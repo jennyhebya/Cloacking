@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator</title>
+    <title>Generator Param</title>
     <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;⚡&lt;/text&gt;&lt;/svg&gt;">
    <style>
 :root{
@@ -29,7 +29,6 @@
 --shadow-glow:0 0 0 4px var(--input-focus-ring);
 --radius:18px;
 }
-
 [data-theme="light"]{
 --bg-body:#eef2ff;
 --bg-card:#ffffff;
@@ -44,13 +43,11 @@
 --btn-reset-hover:#cbd5e1;
 --shadow-card:0 12px 30px rgba(15,23,42,.08);
 }
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 }
-
 body{
 font-family:Inter,Segoe UI,Roboto,sans-serif;
 background:
@@ -64,7 +61,6 @@ justify-content:center;
 color:var(--text-main);
 transition:.25s ease;
 }
-
 .card{
 width:100%;
 max-width:720px;
@@ -75,18 +71,15 @@ padding:28px;
 border-radius:var(--radius);
 box-shadow:var(--shadow-card);
 }
-
 [data-theme="light"] .card{
 background:rgba(255,255,255,.88);
 }
-
 .header-row{
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:24px;
 }
-
 h2{
 font-size:1.9rem;
 font-weight:900;
@@ -95,7 +88,6 @@ background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary))
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
-
 .theme-toggle-btn{
 width:44px;
 height:44px;
@@ -109,22 +101,18 @@ justify-content:center;
 cursor:pointer;
 transition:.2s;
 }
-
 .theme-toggle-btn:hover{
 transform:translateY(-2px);
 background:var(--accent-primary);
 color:#fff;
 }
-
 .theme-toggle-btn svg{
 width:20px;
 height:20px;
 }
-
 .form-group{
 margin-bottom:20px;
 }
-
 label{
 display:block;
 margin-bottom:9px;
@@ -132,7 +120,6 @@ font-size:.88rem;
 font-weight:700;
 color:var(--text-secondary);
 }
-
 input[type="number"],
 input[type="text"],
 select,
@@ -148,7 +135,6 @@ outline:none;
 transition:.25s;
 font-family:Consolas,monospace;
 }
-
 select{
 cursor:pointer;
 appearance:none;
@@ -157,32 +143,31 @@ background-repeat: no-repeat;
 background-position: right 14px center;
 background-size: 16px;
 }
-
+select:disabled{
+opacity:0.6;
+cursor:not-allowed;
+}
 textarea{
 resize:vertical;
 min-height:120px;
 line-height:1.6;
 }
-
 input:focus,
 select:focus,
 textarea:focus{
 border-color:var(--input-focus);
 box-shadow:var(--shadow-glow);
 }
-
 .input-hint{
 display:flex;
 justify-content:space-between;
 align-items:center;
 margin-top:8px;
 }
-
 .input-hint-text{
 font-size:11px;
 color:var(--text-muted);
 }
-
 .smartlink-counter{
 font-size:11px;
 padding:5px 10px;
@@ -191,35 +176,22 @@ background:rgba(99,102,241,.12);
 color:var(--accent-primary);
 font-weight:700;
 }
-
 .smartlink-counter.has-links{
 background:rgba(34,197,94,.12);
 color:var(--success);
 }
-
 .side-by-side-wrapper{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:16px;
 margin-bottom:20px;
 }
-
-@media(max-width:680px){
-.side-by-side-wrapper{
-grid-template-columns:1fr;
-}
-.card{
-padding:20px;
-}
-}
-
 .panel-section{
 background:var(--card-2);
 border:1px solid var(--border);
 border-radius:16px;
 padding:12px;
 }
-
 .panel-control-header{
 display:flex;
 justify-content:space-between;
@@ -230,7 +202,6 @@ background:rgba(255,255,255,.03);
 border:1px solid var(--border);
 margin-bottom:10px;
 }
-
 .panel-status-text{
 display:flex;
 align-items:center;
@@ -239,32 +210,26 @@ font-size:.82rem;
 font-weight:700;
 color:var(--text-secondary);
 }
-
 .panel-status-dot{
 width:8px;
 height:8px;
 border-radius:50%;
 background:var(--text-muted);
-transition: background-color 0.3s;
 }
-
 .panel-status-dot.on{
 background:var(--success);
 box-shadow:0 0 12px var(--success);
 }
-
 .switch{
 position:relative;
 width:42px;
 height:22px;
 }
-
 .switch input{
 opacity:0;
 width:0;
 height:0;
 }
-
 .slider{
 position:absolute;
 inset:0;
@@ -273,7 +238,6 @@ border-radius:999px;
 cursor:pointer;
 transition:.25s;
 }
-
 .slider:before{
 content:"";
 position:absolute;
@@ -285,93 +249,33 @@ background:#fff;
 border-radius:50%;
 transition:.25s;
 }
-
 input:checked + .slider{
 background:var(--success);
 }
-
 input:checked + .slider:before{
 transform:translateX(20px);
 }
-
 .panel-container-disabled{
 opacity:.45;
 pointer-events:none;
 filter:grayscale(1);
-transition:.25s;
 }
-
-.caption-grid{
-display:grid;
-gap:8px;
-}
-
-.caption-item{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-padding:10px;
-border-radius:12px;
-background:rgba(255,255,255,.03);
-border:1px solid var(--border);
-cursor:pointer;
-transition:.2s;
-}
-
-.caption-item:hover{
-border-color:var(--accent-primary);
-transform:translateY(-1px);
-}
-
-.caption-item.selected{
-border-color:#ef4444;
-background:rgba(239,68,68,.12);
-}
-
-.caption-text{
-flex:1;
-font-size:.72rem;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-font-family:Consolas,monospace;
-}
-
-.caption-checkbox{
-accent-color:#ef4444;
-width:15px;
-height:15px;
-}
-
-.caption-custom-input{
-display:none;
-margin-top:10px;
-padding:10px;
-border-radius:12px;
-background:rgba(239,68,68,.08);
-border:1px solid rgba(239,68,68,.25);
-}
-
 .wl-box{
 padding:16px;
 border-radius:14px;
-background:
-linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.15));
+background: linear-gradient(135deg,rgba(99,102,241,.18),rgba(139,92,246,.15));
 border:1px solid rgba(99,102,241,.25);
 display:flex;
 flex-direction:column;
 justify-content:center;
 height:100%;
 }
-
 .wl-title{
 font-size:.82rem;
 font-weight:700;
 margin-bottom:10px;
 color:#a5b4fc;
 }
-
 .wl-url-preview{
 margin-top:12px;
 padding-top:12px;
@@ -380,16 +284,13 @@ font-size:11px;
 line-height:1.6;
 color:var(--text-muted);
 word-break:break-all;
-display:block;
 }
-
 .btn-group{
 display:grid;
 grid-template-columns:2fr 1fr;
 gap:14px;
 margin-top:5px;
 }
-
 button{
 border:none;
 border-radius:14px;
@@ -399,31 +300,25 @@ font-weight:800;
 cursor:pointer;
 transition:.2s;
 }
-
 button:active{
 transform:scale(.98);
 }
-
 .btn-generate{
 background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));
 color:#fff;
 box-shadow:0 10px 25px rgba(99,102,241,.35);
 }
-
 .btn-generate:hover{
 transform:translateY(-2px);
 opacity:.95;
 }
-
 .btn-reset{
 background:var(--btn-reset-bg);
 color:var(--text-main);
 }
-
 .btn-reset:hover{
 background:var(--btn-reset-hover);
 }
-
 .output-box{
 margin-top:28px;
 padding-top:22px;
@@ -431,37 +326,11 @@ border-top:1px dashed var(--border);
 display:none;
 animation:fadeUp .25s ease;
 }
-
-.output-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
-}
-
-.output-title{
-font-size:.92rem;
-font-weight:800;
-}
-
-.btn-copy-all{
-padding:9px 14px;
-border-radius:10px;
-background:var(--success);
-color:#fff;
-font-size:13px;
-}
-
-.btn-copy-all:hover{
-filter:brightness(1.08);
-}
-
 #outputTextarea{
 height:280px;
 font-size:11px;
 line-height:1.5;
 }
-
 #toast{
 position:fixed;
 left:50%;
@@ -478,42 +347,30 @@ transition:.25s;
 z-index:999;
 box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
 #toast.show{
 opacity:1;
 visibility:visible;
 bottom:40px;
 }
-
 @keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(8px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0;transform:translateY(8px);}
+to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 <body>
-
 <div class="card">
-
     <div class="header-row">
         <div>
             <h2>⚡ Multi Link</h2>
             <p style="font-size:13px;color:var(--text-muted);margin-top:6px;">
-                Smartlink Generator + Cloaking Optional
+                Smartlink Generator + Custom Cloaking
             </p>
         </div>
-
         <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Ganti Tema">
             <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
             </svg>
-
             <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: block;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
             </svg>
@@ -522,649 +379,303 @@ transform:translateY(0);
 
     <!-- SMARTLINK -->
     <div class="form-group">
-
-        <label>
-            🔗 Smartlink Asli
-        </label>
-
-        <textarea id="smartlinkInput" placeholder="https://smartlink1.com
-https://smartlink2.com" oninput="updateSmartlinkCounter()"></textarea>
-
+        <label>🔗 Smartlink Asli</label>
+        <textarea id="smartlinkInput" placeholder="https://smartlink1.com&#10;https://smartlink2.com" oninput="updateSmartlinkCounter()"></textarea>
         <div class="input-hint">
-            <span class="input-hint-text">
-                Satu smartlink per baris
-            </span>
-
-            <span class="smartlink-counter" id="smartlinkCounter">
-                0 Link
-            </span>
+            <span class="input-hint-text">Satu smartlink per baris</span>
+            <span class="smartlink-counter" id="smartlinkCounter">0 Link</span>
         </div>
     </div>
 
-    <!-- PANEL WRAPPER -->
+    <!-- SIDE BY SIDE -->
     <div class="side-by-side-wrapper">
-
         <!-- CAPTION PANEL -->
         <div class="form-group" style="margin-bottom:0;">
-
             <div class="panel-section">
-
                 <div class="panel-control-header">
-
                     <div class="panel-status-text">
                         <span class="panel-status-dot" id="captionDot"></span>
-
-                        <span id="captionStatusText">
-                            Caption Off
-                        </span>
+                        <span id="captionStatusText">Caption Off</span>
                     </div>
-
                     <label class="switch">
                         <input type="checkbox" id="captionSwitch" onchange="toggleCaption()">
                         <span class="slider"></span>
                     </label>
-
                 </div>
-
                 <div id="captionContainer" class="panel-container-disabled">
-
+                    <!-- Caption content remains the same -->
                     <div class="caption-grid">
-
                         <div class="caption-item selected" onclick="toggleCaptionSelection(this)">
-
-                            <span class="caption-text">
-                                👙💋 Solo adultos ❤️ 🇺🇸 Por favor vea aquí 👙📲👇
-                            </span>
-
+                            <span class="caption-text">👙💋 Solo adultos ❤️ 🇺🇸 Por favor vea aquí 👙📲👇</span>
                             <input type="checkbox" class="caption-checkbox" checked="">
-
                         </div>
-
                     </div>
-
                     <div class="caption-custom-input" id="captionCustomBox">
-
-                        <label style="font-size:11px;margin-bottom:6px;color:var(--text-muted);">
-                            ✏️ Custom Caption
-                        </label>
-
-                        <textarea id="captionCustomInput" placeholder="Baris teks 1
-Baris teks 2
-Baris teks 3" style="
-                                min-height:90px;
-                                font-size:12px;
-                            "></textarea>
-
+                        <label style="font-size:11px;margin-bottom:6px;color:var(--text-muted);">✏️ Custom Caption</label>
+                        <textarea id="captionCustomInput" placeholder="Baris teks 1&#10;Baris teks 2" style="min-height:90px;font-size:12px;"></textarea>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
-        <!-- WL PANEL -->
+        <!-- WL CLOAKING PANEL (BARU DENGAN SWITCH) -->
         <div class="form-group" style="margin-bottom:0;">
-
             <div class="panel-section">
-
                 <div class="panel-control-header">
-
                     <div class="panel-status-text">
-
-                        <span class="panel-status-dot" id="wlDot"></span>
-
-                        <span id="wlStatusText">
-                            Cloaking Off
-                        </span>
+                        <span class="panel-status-dot on" id="wlDot"></span>
+                        <span id="wlStatusText" style="color:var(--success);">Cloaking On</span>
                     </div>
-
                     <label class="switch">
-                        <!-- Default unchecked untuk OFF -->
-                        <input type="checkbox" id="wlSwitch" onchange="toggleWl()">
+                        <input type="checkbox" id="wlSwitch" onchange="toggleWL()" checked>
                         <span class="slider"></span>
                     </label>
-
                 </div>
-
-                <div id="wlContainer" class="wl-box panel-container-disabled">
-
-                    <div class="wl-title">
-                        PILIH CLOAKING
-                    </div>
-
-                    <!-- Custom Select Dropdown -->
+                <div class="wl-box" id="wlContainer">
+                    <div class="wl-title">PILIH CLOAKING</div>
                     <select id="wlSelect" onchange="updateWlPreview()">
                         <option value="https://l.facebook.com/l.php?u=">1. Facebook (l.facebook.com)</option>
-                        <option value="https://m.facebook.com/l.php?u=">2. Facebook Mobile (m.facebook.com)</option>
-                        <option value="https://web.facebook.com/l.php?u=">3. Facebook Web (web.facebook.com)</option>
+                        <option value="https://m.facebook.com/l.php?u=">2. Facebook Mobile</option>
+                        <option value="https://web.facebook.com/l.php?u=">3. Facebook Web</option>
                         <option value="https://l.wl.co/l?u=">4. WL Cloaking (l.wl.co)</option>
-                        <option value="https://l.instagram.com/?u=">5. Instagram (l.instagram.com)</option>
+                        <option value="https://l.instagram.com/?u=">5. Instagram</option>
                     </select>
-
                     <span class="wl-url-preview" id="wlPreview">
-                        Prefix aktif: <br>
-                        https://l.facebook.com/l.php?u=
+                        Prefix aktif: <br>https://l.facebook.com/l.php?u=
                     </span>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <!-- TOTAL -->
     <div class="form-group">
-
-        <label>
-            📦 Jumlah Link Total
-        </label>
-
+        <label>📦 Jumlah Link Total</label>
         <input type="number" id="count" value="10" min="1">
-
     </div>
 
     <!-- BUTTON -->
     <div class="btn-group">
-
-        <button class="btn-generate" onclick="generate()">
-            🚀 Generate Link
-        </button>
-
-        <button class="btn-reset" onclick="resetForm()">
-            🔄 Reset
-        </button>
-
+        <button class="btn-generate" onclick="generate()">🚀 Generate Link</button>
+        <button class="btn-reset" onclick="resetForm()">🔄 Reset</button>
     </div>
 
     <!-- OUTPUT -->
     <div id="outputBox" class="output-box">
-
         <div class="output-header">
-
-            <span class="output-title">
-                ⚡ Hasil Generate
-            </span>
-
-            <button class="btn-copy-all" onclick="copyAll()">
-                📋 Copy All
-            </button>
-
+            <span class="output-title">⚡ Hasil Generate</span>
+            <button class="btn-copy-all" onclick="copyAll()">📋 Copy All</button>
         </div>
-
-        <textarea id="outputTextarea" readonly="" placeholder="Hasil generate akan muncul di sini..."></textarea>
-
+        <textarea id="outputTextarea" readonly placeholder="Hasil generate akan muncul di sini..."></textarea>
     </div>
-
 </div>
 
-<!-- TOAST -->
-<div id="toast">
-    Berhasil disalin!
-</div>
+<div id="toast">Berhasil disalin!</div>
 
 <script>
-
-/* =========================
-   THEME
-========================= */
-
+// ==================== THEME ====================
 function initTheme(){
-    const saved=localStorage.getItem('theme');
-    const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    applyTheme(
-        saved==='dark'||(!saved&&prefersDark)
-            ?'dark'
-            :'light'
-    );
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved === 'dark' || (!saved && prefersDark) ? 'dark' : 'light');
 }
-
 function toggleTheme(){
-    const next=
-        document.documentElement.getAttribute('data-theme')==='dark'
-            ?'light'
-            :'dark';
-
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     applyTheme(next);
-    localStorage.setItem('theme',next);
+    localStorage.setItem('theme', next);
 }
-
 function applyTheme(theme){
-
-    document.documentElement.setAttribute('data-theme',theme);
-
-    document.getElementById('iconSun').style.display=
-        theme==='dark'
-            ?'none'
-            :'block';
-
-    document.getElementById('iconMoon').style.display=
-        theme==='dark'
-            ?'block'
-            :'none';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('iconSun').style.display = theme === 'dark' ? 'none' : 'block';
+    document.getElementById('iconMoon').style.display = theme === 'dark' ? 'block' : 'none';
 }
 
-/* =========================
-   SMARTLINK
-========================= */
-
+// ==================== SMARTLINK ====================
 function parseSmartlinks(){
-
-    const raw=
-        document.getElementById('smartlinkInput')
-        .value
-        .trim();
-
+    const raw = document.getElementById('smartlinkInput').value.trim();
     if(!raw) return [];
-
-    return raw
-        .split('\n')
-        .map(v=>v.trim())
-        .filter(v=>v);
+    return raw.split('\n').map(v=>v.trim()).filter(v=>v);
 }
-
 function updateSmartlinkCounter(){
-
-    const total=parseSmartlinks().length;
-
-    const counter=
-        document.getElementById('smartlinkCounter');
-
-    counter.textContent=`${total} Link`;
-
-    counter.classList.toggle(
-        'has-links',
-        total>0
-    );
+    const total = parseSmartlinks().length;
+    const counter = document.getElementById('smartlinkCounter');
+    counter.textContent = `${total} Link`;
+    counter.classList.toggle('has-links', total > 0);
 }
 
-/* =========================
-   DISTRIBUTION
-========================= */
-
-function getDistribution(total,count){
-
-    const dist=
-        new Array(count).fill(0);
-
-    let remain=total;
-
-    for(
-        let i=0;
-        i<count&&remain>0;
-        i++
-    ){
-
-        const give=Math.ceil(
-            remain/(count-i)
-        );
-
-        dist[i]=give;
-
-        remain-=give;
+// ==================== DISTRIBUTION ====================
+function getDistribution(total, count){
+    const dist = new Array(count).fill(0);
+    let remain = total;
+    for(let i = 0; i < count && remain > 0; i++){
+        const give = Math.ceil(remain / (count - i));
+        dist[i] = give;
+        remain -= give;
     }
-
     return dist;
 }
 
-/* =========================
-   CAPTION
-========================= */
-
+// ==================== CAPTION (unchanged) ====================
 function toggleCaption(){
-
-    const isOn=
-        document.getElementById('captionSwitch')
-        .checked;
-
-    document
-        .getElementById('captionContainer')
-        .classList.toggle(
-            'panel-container-disabled',
-            !isOn
-        );
-
-    document.getElementById('captionStatusText')
-        .innerText=isOn
-            ?'Caption On'
-            :'Caption Off';
-
-    document.getElementById('captionStatusText')
-        .style.color=isOn
-            ?'#ef4444'
-            :'#94a3b8';
-
-    document.getElementById('captionDot')
-        .classList.toggle('on',isOn);
+    const isOn = document.getElementById('captionSwitch').checked;
+    document.getElementById('captionContainer').classList.toggle('panel-container-disabled', !isOn);
+    document.getElementById('captionStatusText').innerText = isOn ? 'Caption On' : 'Caption Off';
+    document.getElementById('captionStatusText').style.color = isOn ? '#ef4444' : '#94a3b8';
+    document.getElementById('captionDot').classList.toggle('on', isOn);
 }
 
 function toggleCaptionSelection(el){
-
-    if(
-        !document.getElementById('captionSwitch')
-        .checked
-    ) return;
-
+    if(!document.getElementById('captionSwitch').checked) return;
     el.classList.toggle('selected');
-
-    const cb=el.querySelector('input');
-
-    cb.checked=!cb.checked;
+    el.querySelector('input').checked = !el.querySelector('input').checked;
 }
 
 function getCaptionLines(){
-
-    if(
-        !document.getElementById('captionSwitch')
-        .checked
-    ) return null;
-
-    const custom=
-        document.getElementById('captionCustomInput')
-        .value
-        .trim();
-
+    if(!document.getElementById('captionSwitch').checked) return null;
+    const custom = document.getElementById('captionCustomInput').value.trim();
     if(custom){
-
-        return custom
-            .split('\n')
-            .map(v=>v.trim())
-            .filter(v=>v);
+        return custom.split('\n').map(v=>v.trim()).filter(v=>v);
     }
-
-    return[
+    return [
         "👙💋 𝘚𝘰𝘭𝘰 𝘢𝘥𝘶𝘭𝘵𝘰𝘴 ❤️ 🇺🇸",
         "𝘕𝘰 𝘱𝘶𝘦𝘥𝘰 𝘱𝘶𝘣𝘭𝘪𝘤𝘢𝘳 𝘧𝘰𝘵𝘰𝘴 𝘰 𝘷𝘪𝘥𝘦𝘰𝘴 𝘱𝘢𝘳𝘢 𝘢𝘥𝘶𝘭𝘵𝘰𝘴 𝘦𝘯 𝘍𝘢𝘤𝘦𝘣𝘰𝘰𝘬",
         "𝘗𝘰𝘳 𝘧𝘢𝘷𝘰𝘳 𝘷𝘦𝘢 𝘢𝘲𝘶í 👙📲👇"
     ];
 }
 
-/* =========================
-   WL CLOAKING LOGIC
-========================= */
-
-function toggleWl() {
+// ==================== WL CLOAKING (BARU) ====================
+function toggleWL(){
     const isOn = document.getElementById('wlSwitch').checked;
-    
-    // Toggle visual disabled state
-    document.getElementById('wlContainer').classList.toggle('panel-container-disabled', !isOn);
-    
-    // Update Text & Dot
-    document.getElementById('wlStatusText').innerText = isOn ? 'Cloaking On' : 'Cloaking Off';
-    document.getElementById('wlStatusText').style.color = isOn ? 'var(--success)' : 'var(--text-muted)';
-    document.getElementById('wlDot').classList.toggle('on', isOn);
+    const container = document.getElementById('wlContainer');
+    const statusText = document.getElementById('wlStatusText');
+    const dot = document.getElementById('wlDot');
+
+    container.classList.toggle('panel-container-disabled', !isOn);
+    statusText.textContent = isOn ? 'Cloaking On' : 'Cloaking Off';
+    statusText.style.color = isOn ? 'var(--success)' : '#94a3b8';
+    dot.classList.toggle('on', isOn);
 }
 
-function updateWlPreview() {
+function updateWlPreview(){
     const select = document.getElementById('wlSelect');
     const preview = document.getElementById('wlPreview');
-    const selectedValue = select.value;
-    
-    preview.innerHTML = `Prefix aktif: <br>${selectedValue}`;
+    preview.innerHTML = `Prefix aktif: <br>${select.value}`;
 }
 
-function applyWL(url){
-    // Cek apakah switch WL aktif
-    const isWlEnabled = document.getElementById('wlSwitch').checked;
-    
-    if (!isWlEnabled) {
-        // Jika OFF, kembalikan link asli + random ID (yang sudah ditambahkan sebelum fungsi ini dipanggil)
-        return url;
-    }
-
-    // Jika ON, ambil prefix dan encode
-    const selectedPrefix = document.getElementById('wlSelect').value;
-    
-    return (
-        selectedPrefix +
-        encodeURIComponent(url)
-    );
+function getWLPrefix(){
+    if(!document.getElementById('wlSwitch').checked) return null;
+    return document.getElementById('wlSelect').value;
 }
 
-/* =========================
-   RANDOM ID
-========================= */
-
-function makeId(len=8){
-
-    const chars=
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    let out='';
-
-    for(let i=0;i<len;i++){
-
-        out+=chars.charAt(
-            Math.floor(
-                Math.random()*chars.length
-            )
-        );
-    }
-
-    return out;
-}
-
-/* =========================
-   GENERATE
-========================= */
-
+// ==================== GENERATE ====================
 function generate(){
-
-    const smartlinks=
-        parseSmartlinks();
-
-    const total=parseInt(
-        document.getElementById('count')
-        .value
-    );
-
-    const captionEnabled=
-        document.getElementById('captionSwitch')
-        .checked;
-
-    const captions=
-        getCaptionLines();
-
-    const outputBox=
-        document.getElementById('outputBox');
-
-    const textarea=
-        document.getElementById('outputTextarea');
-
-    textarea.value='';
-
-    /* VALIDATION */
+    const smartlinks = parseSmartlinks();
+    const total = parseInt(document.getElementById('count').value);
+    const outputBox = document.getElementById('outputBox');
+    const textarea = document.getElementById('outputTextarea');
+    textarea.value = '';
 
     if(!smartlinks.length){
-
-        showToast(
-            'Isi minimal satu Smartlink!'
-        );
-
+        showToast('Isi minimal satu Smartlink!');
+        return;
+    }
+    if(isNaN(total) || total < 1){
+        showToast('Jumlah link tidak valid!');
         return;
     }
 
-    if(
-        isNaN(total)||
-        total<1
-    ){
+    const distribution = getDistribution(total, smartlinks.length);
+    const lines = [];
+    const prefix = getWLPrefix();
 
-        showToast(
-            'Jumlah link tidak valid!'
-        );
+    smartlinks.forEach((smartlink, index) => {
+        const amount = distribution[index];
+        for(let i = 0; i < amount; i++){
+            const separator = smartlink.includes('?') ? '&' : '?';
+            const rawLink = smartlink + separator + makeId(8);
 
-        return;
-    }
-
-    /* DISTRIBUTION */
-
-    const distribution=
-        getDistribution(
-            total,
-            smartlinks.length
-        );
-
-    const lines=[];
-
-    smartlinks.forEach(
-        (smartlink,index)=>{
-
-        const amount=
-            distribution[index];
-
-        for(
-            let i=0;
-            i<amount;
-            i++
-        ){
-
-            const separator=
-                smartlink.includes('?')
-                    ?'&'
-                    :'?';
-
-            const rawLink=
-                smartlink+
-                separator+
-                makeId(8);
-
-            /* WL ENCODE (Logic updated) */
-            
-            // Fungsi applyWL sekarang mengecek switch On/Off
-            const finalLink=
-                applyWL(rawLink);
-
-            /* CAPTION */
-
-            if(
-                captionEnabled&&
-                captions
-            ){
-
-                captions.forEach(
-                    line=>lines.push(line)
-                );
+            let finalLink = rawLink;
+            if(prefix){
+                finalLink = prefix + encodeURIComponent(rawLink);
             }
 
             lines.push(finalLink);
         }
-    );
-
-    textarea.value=
-        lines.join('\n');
-
-    outputBox.style.display='block';
-
-    outputBox.scrollIntoView({
-        behavior:'smooth',
-        block:'nearest'
     });
 
-    showToast(
-        'Generate berhasil!'
-    );
+    // Tambahkan caption jika aktif
+    if(document.getElementById('captionSwitch').checked){
+        const captions = getCaptionLines();
+        if(captions){
+            const finalOutput = [...captions, ...lines];
+            textarea.value = finalOutput.join('\n');
+        } else {
+            textarea.value = lines.join('\n');
+        }
+    } else {
+        textarea.value = lines.join('\n');
+    }
+
+    outputBox.style.display = 'block';
+    outputBox.scrollIntoView({behavior:'smooth'});
+    showToast('Generate berhasil!');
 }
 
-/* =========================
-   COPY
-========================= */
+function makeId(len=8){
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let out = '';
+    for(let i = 0; i < len; i++){
+        out += chars.charAt(Math.floor(Math.random()*chars.length));
+    }
+    return out;
+}
 
+// ==================== COPY & RESET ====================
 function copyAll(){
-
-    const textarea=
-        document.getElementById('outputTextarea');
-
+    const textarea = document.getElementById('outputTextarea');
     if(!textarea.value) return;
-
-    textarea.select();
-
-    navigator.clipboard
-        .writeText(textarea.value)
-        .then(()=>{
-
-            showToast(
-                'Semua berhasil disalin!'
-            );
-        });
+    navigator.clipboard.writeText(textarea.value).then(() => {
+        showToast('Semua berhasil disalin!');
+    });
 }
-
-/* =========================
-   RESET
-========================= */
 
 function resetForm(){
-
-    document.getElementById('smartlinkInput')
-        .value='';
-
-    document.getElementById('count')
-        .value='10';
-
-    // Reset WL Switch & Dropdown
+    document.getElementById('smartlinkInput').value = '';
+    document.getElementById('count').value = '10';
+    
+    // Reset Cloaking ke OFF
     document.getElementById('wlSwitch').checked = false;
-    toggleWl(); // Reset visual state
+    toggleWL();
+    
     document.getElementById('wlSelect').selectedIndex = 0;
     updateWlPreview();
-
+    
     updateSmartlinkCounter();
-
-    /* RESET CAPTION */
-
-    document.getElementById('captionSwitch')
-        .checked=false;
-
+    
+    // Reset Caption
+    document.getElementById('captionSwitch').checked = false;
     toggleCaption();
-
-    document.getElementById('captionCustomInput')
-        .value='';
-
-    /* RESET OUTPUT */
-
-    document.getElementById('outputBox')
-        .style.display='none';
-
-    document.getElementById('outputTextarea')
-        .value='';
-
-    showToast(
-        'Form berhasil di-reset!'
-    );
+    document.getElementById('captionCustomInput').value = '';
+    
+    // Reset Output
+    document.getElementById('outputBox').style.display = 'none';
+    document.getElementById('outputTextarea').value = '';
+    
+    showToast('Form berhasil di-reset!');
 }
-
-/* =========================
-   TOAST
-========================= */
 
 function showToast(message){
-
-    const toast=
-        document.getElementById('toast');
-
-    toast.innerText=message;
-
-    toast.className='show';
-
-    setTimeout(()=>{
-
-        toast.className=
-            toast.className
-            .replace('show','');
-
-    },3000);
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.className = 'show';
+    setTimeout(() => toast.className = toast.className.replace('show',''), 3000);
 }
 
-/* =========================
-   INIT
-========================= */
-
-window.addEventListener(
-    'DOMContentLoaded',
-    initTheme
-);
+// Init
+window.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    updateWlPreview();
+});
 </script>
-
 </body>
 </html>
