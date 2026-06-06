@@ -326,6 +326,36 @@ border-top:1px dashed var(--border);
 display:none;
 animation:fadeUp .25s ease;
 }
+/* Style untuk Header Output */
+.output-header{
+display:flex;
+justify-content:space-between; /* Judul kiri, Tombol kanan */
+align-items:center;
+margin-bottom:12px;
+flex-wrap:wrap; /* Agar responsif di layar kecil */
+gap:10px;
+}
+.output-title{
+font-size:1rem;
+font-weight:800;
+color:var(--text-main);
+}
+/* Style Khusus Tombol Copy All */
+.btn-copy-all{
+background:var(--accent-primary);
+color:#fff;
+padding:10px 18px;
+font-size:13px;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+transition:0.2s;
+white-space:nowrap; /* Mencegah teks turun baris */
+}
+.btn-copy-all:hover{
+background:var(--accent-secondary);
+transform:translateY(-2px);
+}
 #outputTextarea{
 height:280px;
 font-size:11px;
@@ -362,9 +392,9 @@ to{opacity:1;transform:translateY(0);}
 <div class="card">
     <div class="header-row">
         <div>
-            <h2>⚡ Multi Link</h2>
+            <h2>⚡ Multi Param Link</h2>
             <p style="font-size:13px;color:var(--text-muted);margin-top:6px;">
-                Smartlink Generator + Custom Cloaking
+                Param Generator + Custom Cloaking
             </p>
         </div>
         <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Ganti Tema">
@@ -403,7 +433,6 @@ to{opacity:1;transform:translateY(0);}
                     </label>
                 </div>
                 <div id="captionContainer" class="panel-container-disabled">
-                    <!-- Caption content remains the same -->
                     <div class="caption-grid">
                         <div class="caption-item selected" onclick="toggleCaptionSelection(this)">
                             <span class="caption-text">👙💋 Solo adultos ❤️ 🇺🇸 Por favor vea aquí 👙📲👇</span>
@@ -418,7 +447,7 @@ to{opacity:1;transform:translateY(0);}
             </div>
         </div>
 
-        <!-- WL CLOAKING PANEL (BARU DENGAN SWITCH) -->
+        <!-- WL CLOAKING PANEL -->
         <div class="form-group" style="margin-bottom:0;">
             <div class="panel-section">
                 <div class="panel-control-header">
@@ -462,6 +491,7 @@ to{opacity:1;transform:translateY(0);}
 
     <!-- OUTPUT -->
     <div id="outputBox" class="output-box">
+        <!-- HEADER OUTPUT (Updated) -->
         <div class="output-header">
             <span class="output-title">⚡ Hasil Generate</span>
             <button class="btn-copy-all" onclick="copyAll()">📋 Copy All</button>
@@ -503,19 +533,92 @@ function updateSmartlinkCounter(){
     counter.classList.toggle('has-links', total > 0);
 }
 
-// ==================== DISTRIBUTION ====================
-function getDistribution(total, count){
-    const dist = new Array(count).fill(0);
-    let remain = total;
-    for(let i = 0; i < count && remain > 0; i++){
-        const give = Math.ceil(remain / (count - i));
-        dist[i] = give;
-        remain -= give;
+// ==================== RANDOMIZE (SHUFFLE) ====================
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    return dist;
+    return array;
 }
 
-// ==================== CAPTION (unchanged) ====================
+// ==================== GENERATE (UPDATED LOGIC) ====================
+function generate(){
+    const smartlinks = parseSmartlinks();
+    const total = parseInt(document.getElementById('count').value);
+    const outputBox = document.getElementById('outputBox');
+    const textarea = document.getElementById('outputTextarea');
+    textarea.value = '';
+
+    if(!smartlinks.length){
+        showToast('Isi minimal satu Smartlink!');
+        return;
+    }
+    if(isNaN(total) || total < 1){
+        showToast('Jumlah link tidak valid!');
+        return;
+    }
+
+    // 1. Hitung distribusi jumlah untuk setiap smartlink
+    const distribution = new Array(smartlinks.length).fill(0);
+    let remain = total;
+    for(let i = 0; i < smartlinks.length && remain > 0; i++){
+        const give = Math.ceil(remain / (smartlinks.length - i));
+        distribution[i] = give;
+        remain -= give;
+    }
+
+    // 2. Buat pool link berdasarkan distribusi
+    let linkPool = [];
+    smartlinks.forEach((smartlink, index) => {
+        const amount = distribution[index];
+        for(let i = 0; i < amount; i++){
+            const separator = smartlink.includes('?') ? '&' : '?';
+            const rawLink = smartlink + separator + makeId(8);
+            linkPool.push(rawLink);
+        }
+    });
+
+    // 3. ACAK URUTAN LINK (A-B-A-B Logic)
+    const shuffledLinks = shuffleArray(linkPool);
+
+    // 4. Proses Cloaking pada link yang sudah diacak
+    const prefix = getWLPrefix();
+    const finalLines = shuffledLinks.map(link => {
+        let finalLink = link;
+        if(prefix){
+            finalLink = prefix + encodeURIComponent(link);
+        }
+        return finalLink;
+    });
+
+    // 5. Tambahkan caption jika aktif
+    if(document.getElementById('captionSwitch').checked){
+        const captions = getCaptionLines();
+        if(captions){
+            textarea.value = [...captions, ...finalLines].join('\n');
+        } else {
+            textarea.value = finalLines.join('\n');
+        }
+    } else {
+        textarea.value = finalLines.join('\n');
+    }
+
+    outputBox.style.display = 'block';
+    outputBox.scrollIntoView({behavior:'smooth'});
+    showToast('Generate berhasil! (Randomized)');
+}
+
+function makeId(len=8){
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let out = '';
+    for(let i = 0; i < len; i++){
+        out += chars.charAt(Math.floor(Math.random()*chars.length));
+    }
+    return out;
+}
+
+// ==================== CAPTION ====================
 function toggleCaption(){
     const isOn = document.getElementById('captionSwitch').checked;
     document.getElementById('captionContainer').classList.toggle('panel-container-disabled', !isOn);
@@ -543,7 +646,7 @@ function getCaptionLines(){
     ];
 }
 
-// ==================== WL CLOAKING (BARU) ====================
+// ==================== WL CLOAKING ====================
 function toggleWL(){
     const isOn = document.getElementById('wlSwitch').checked;
     const container = document.getElementById('wlContainer');
@@ -567,69 +670,6 @@ function getWLPrefix(){
     return document.getElementById('wlSelect').value;
 }
 
-// ==================== GENERATE ====================
-function generate(){
-    const smartlinks = parseSmartlinks();
-    const total = parseInt(document.getElementById('count').value);
-    const outputBox = document.getElementById('outputBox');
-    const textarea = document.getElementById('outputTextarea');
-    textarea.value = '';
-
-    if(!smartlinks.length){
-        showToast('Isi minimal satu Smartlink!');
-        return;
-    }
-    if(isNaN(total) || total < 1){
-        showToast('Jumlah link tidak valid!');
-        return;
-    }
-
-    const distribution = getDistribution(total, smartlinks.length);
-    const lines = [];
-    const prefix = getWLPrefix();
-
-    smartlinks.forEach((smartlink, index) => {
-        const amount = distribution[index];
-        for(let i = 0; i < amount; i++){
-            const separator = smartlink.includes('?') ? '&' : '?';
-            const rawLink = smartlink + separator + makeId(8);
-
-            let finalLink = rawLink;
-            if(prefix){
-                finalLink = prefix + encodeURIComponent(rawLink);
-            }
-
-            lines.push(finalLink);
-        }
-    });
-
-    // Tambahkan caption jika aktif
-    if(document.getElementById('captionSwitch').checked){
-        const captions = getCaptionLines();
-        if(captions){
-            const finalOutput = [...captions, ...lines];
-            textarea.value = finalOutput.join('\n');
-        } else {
-            textarea.value = lines.join('\n');
-        }
-    } else {
-        textarea.value = lines.join('\n');
-    }
-
-    outputBox.style.display = 'block';
-    outputBox.scrollIntoView({behavior:'smooth'});
-    showToast('Generate berhasil!');
-}
-
-function makeId(len=8){
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let out = '';
-    for(let i = 0; i < len; i++){
-        out += chars.charAt(Math.floor(Math.random()*chars.length));
-    }
-    return out;
-}
-
 // ==================== COPY & RESET ====================
 function copyAll(){
     const textarea = document.getElementById('outputTextarea');
@@ -643,7 +683,6 @@ function resetForm(){
     document.getElementById('smartlinkInput').value = '';
     document.getElementById('count').value = '10';
     
-    // Reset Cloaking ke OFF
     document.getElementById('wlSwitch').checked = false;
     toggleWL();
     
@@ -652,12 +691,10 @@ function resetForm(){
     
     updateSmartlinkCounter();
     
-    // Reset Caption
     document.getElementById('captionSwitch').checked = false;
     toggleCaption();
     document.getElementById('captionCustomInput').value = '';
     
-    // Reset Output
     document.getElementById('outputBox').style.display = 'none';
     document.getElementById('outputTextarea').value = '';
     
